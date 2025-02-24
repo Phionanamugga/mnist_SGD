@@ -81,3 +81,14 @@ mse_mini = mean_squared_error(y_test, y_pred_mini)
 print(f"Full-Batch GD MSE: {mse_full:.4f}")
 print(f"Mini-Batch GD MSE: {mse_mini:.4f}")
 
+
+# ✅ Visualization: Loss Reduction Comparison
+plt.figure(figsize=(8,5))
+plt.plot(cost_full, label="Full-Batch GD", color="b")
+plt.plot(cost_mini, label="Mini-Batch GD", color="r", linestyle="dashed")
+plt.xlabel("Epochs")
+plt.ylabel("Mean Squared Error (MSE)")
+plt.title("Comparison of Gradient Descent Variants")
+plt.legend()
+plt.grid()
+plt.show()

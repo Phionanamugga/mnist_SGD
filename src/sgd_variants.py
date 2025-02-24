@@ -16,3 +16,8 @@ y = df.iloc[:, -1].values   # Target variable (last column)
 
 # ✅ Split into Training & Test Sets
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# ✅ Normalize Features (Gradient Descent is sensitive to scaling)
+scaler = StandardScaler()
+X_train_scaled = scaler.fit_transform(X_train)
+X_test_scaled = scaler.transform(X_test)

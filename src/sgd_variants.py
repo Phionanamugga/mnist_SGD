@@ -70,3 +70,14 @@ def mini_batch_gd(X, y, learning_rate=0.01, epochs=1000, batch_size=32):
 
 # ✅ Run Mini-Batch Gradient Descent
 theta_mini, cost_mini = mini_batch_gd(X_train_b, y_train)
+
+# ✅ Compare Models on Test Data
+y_pred_full = X_test_b @ theta_full
+y_pred_mini = X_test_b @ theta_mini
+
+mse_full = mean_squared_error(y_test, y_pred_full)
+mse_mini = mean_squared_error(y_test, y_pred_mini)
+
+print(f"Full-Batch GD MSE: {mse_full:.4f}")
+print(f"Mini-Batch GD MSE: {mse_mini:.4f}")
+

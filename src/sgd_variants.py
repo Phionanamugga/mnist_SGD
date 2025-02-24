@@ -67,3 +67,6 @@ def mini_batch_gd(X, y, learning_rate=0.01, epochs=1000, batch_size=32):
         cost_history.append(cost)
 
     return theta, cost_history
+
+# ✅ Run Mini-Batch Gradient Descent
+theta_mini, cost_mini = mini_batch_gd(X_train_b, y_train)

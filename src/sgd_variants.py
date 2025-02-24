@@ -32,3 +32,11 @@ def full_batch_gd(X, y, learning_rate=0.01, epochs=1000):
     m, n = X.shape
     theta = np.random.randn(n)  # Initialize weights randomly
     cost_history = []
+
+    for epoch in range(epochs):
+        gradients = 2 / m * X.T @ (X @ theta - y)
+        theta -= learning_rate * gradients
+        cost = mean_squared_error(y, X @ theta)
+        cost_history.append(cost)
+
+    return theta, cost_history

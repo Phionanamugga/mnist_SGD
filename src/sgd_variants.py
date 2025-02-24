@@ -40,3 +40,30 @@ def full_batch_gd(X, y, learning_rate=0.01, epochs=1000):
         cost_history.append(cost)
 
     return theta, cost_history
+
+# ✅ Run Full-Batch Gradient Descent
+theta_full, cost_full = full_batch_gd(X_train_b, y_train)
+
+
+# 🔹 2️⃣ MINI-BATCH GRADIENT DESCENT 🔹
+def mini_batch_gd(X, y, learning_rate=0.01, epochs=1000, batch_size=32):
+    m, n = X.shape
+    theta = np.random.randn(n)  # Initialize weights randomly
+    cost_history = []
+
+    for epoch in range(epochs):
+        shuffled_indices = np.random.permutation(m)  # Shuffle dataset
+        X_shuffled = X[shuffled_indices]
+        y_shuffled = y[shuffled_indices]
+
+        for i in range(0, m, batch_size):  # Iterate over mini-batches
+            X_batch = X_shuffled[i:i+batch_size]
+            y_batch = y_shuffled[i:i+batch_size]
+
+            gradients = 2 / batch_size * X_batch.T @ (X_batch @ theta - y_batch)
+            theta -= learning_rate * gradients
+
+        cost = mean_squared_error(y, X @ theta)
+        cost_history.append(cost)
+
+    return theta, cost_history

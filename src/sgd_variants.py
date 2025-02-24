@@ -9,3 +9,7 @@ from sklearn.metrics import mean_squared_error
 # ✅ Load the Housing Dataset
 url = "https://raw.githubusercontent.com/Phionanamugga/teaching/refs/heads/main/datasets/housing.csv"
 df = pd.read_csv(url)
+
+# ✅ Prepare Features (X) and Target (y)
+X = df.iloc[:, :-1].values  # Features (all columns except the last)
+y = df.iloc[:, -1].values   # Target variable (last column)

@@ -25,3 +25,10 @@ X_test_scaled = scaler.transform(X_test)
 # ✅ Add Bias Term (X0 = 1) for Intercept
 X_train_b = np.c_[np.ones((X_train_scaled.shape[0], 1)), X_train_scaled]
 X_test_b = np.c_[np.ones((X_test_scaled.shape[0], 1)), X_test_scaled]
+
+
+# 🔹 1️⃣ FULL-BATCH GRADIENT DESCENT 🔹
+def full_batch_gd(X, y, learning_rate=0.01, epochs=1000):
+    m, n = X.shape
+    theta = np.random.randn(n)  # Initialize weights randomly
+    cost_history = []

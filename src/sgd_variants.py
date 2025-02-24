@@ -21,3 +21,7 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_
 scaler = StandardScaler()
 X_train_scaled = scaler.fit_transform(X_train)
 X_test_scaled = scaler.transform(X_test)
+
+# ✅ Add Bias Term (X0 = 1) for Intercept
+X_train_b = np.c_[np.ones((X_train_scaled.shape[0], 1)), X_train_scaled]
+X_test_b = np.c_[np.ones((X_test_scaled.shape[0], 1)), X_test_scaled]

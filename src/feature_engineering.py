@@ -33,6 +33,11 @@ df = df.drop(columns=categorical_features).join(df_encoded)
 scaler = StandardScaler()
 df_scaled = pd.DataFrame(scaler.fit_transform(df), columns=df.columns)
 
+# 🔹 Polynomial Features 🔹
+poly = PolynomialFeatures(degree=2, interaction_only=True, include_bias=False)
+df_poly = pd.DataFrame(poly.fit_transform(df_scaled), columns=poly.get_feature_names_out(df.columns))
+
+
 
 
 

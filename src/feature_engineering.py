@@ -19,5 +19,11 @@ imputer = SimpleImputer(strategy="median")
 df_numeric = df.select_dtypes(include=[np.number])  # Select numerical columns
 df[df_numeric.columns] = imputer.fit_transform(df_numeric)
 
+# 🔹 Encode Categorical Features 🔹
+categorical_features = df.select_dtypes(include=['object']).columns
+encoder = OneHotEncoder(handle_unknown='ignore', sparse_output=False)
+encoded_categorical = encoder.fit_transform(df[categorical_features])
+encoded_feature_names = encoder.get_feature_names_out(categorical_features)
+
 
 

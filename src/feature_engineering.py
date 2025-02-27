@@ -37,7 +37,8 @@ df_scaled = pd.DataFrame(scaler.fit_transform(df), columns=df.columns)
 poly = PolynomialFeatures(degree=2, interaction_only=True, include_bias=False)
 df_poly = pd.DataFrame(poly.fit_transform(df_scaled), columns=poly.get_feature_names_out(df.columns))
 
-
+# ✅ Final Transformed Data
+print("\nTransformed Data:\n", df_poly.head())
 
 
 

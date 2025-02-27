@@ -40,6 +40,9 @@ df_poly = pd.DataFrame(poly.fit_transform(df_scaled), columns=poly.get_feature_n
 # ✅ Final Transformed Data
 print("\nTransformed Data:\n", df_poly.head())
 
+# ✅ Save Processed Data
+df_poly.to_csv("processed_housing_data.csv", index=False)
+
 
 
 

@@ -14,3 +14,7 @@ df = pd.read_csv(url)
 # ✅ Preprocessing: Handle Missing Values
 df.fillna(df.median(numeric_only=True), inplace=True)
 
+# ✅ Split Features and Target
+X = df.drop(columns=['MEDV'])  # Assuming 'MEDV' is the target variable
+y = df['MEDV']
+

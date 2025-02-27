@@ -27,3 +27,17 @@ class NeuralNet(nn.Module):
         x = self.relu(x)
         x = self.fc2(x)
         return x
+    
+# ✅ Model Initialization
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+model = NeuralNet().to(device)
+criterion = nn.CrossEntropyLoss()
+optimizer = optim.SGD(model.parameters(), lr=0.1)
+
+# ✅ Different Learning Rate Schedulers
+schedulers = {
+    "StepLR": optim.lr_scheduler.StepLR(optimizer, step_size=5, gamma=0.5),
+    "ExponentialLR": optim.lr_scheduler.ExponentialLR(optimizer, gamma=0.9),
+    "CosineAnnealingLR": optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=10),
+    "ReduceLROnPlateau": optim.lr_scheduler.ReduceLROnPlateau(optimizer, mode='min', factor=0.5, patience=3)
+}

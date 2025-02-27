@@ -41,4 +41,19 @@ class NAG:
             self.velocity[i] = self.momentum * self.velocity[i] - self.lr * grads[i]
             params[i] = lookahead + self.velocity[i]
 
+class AdaGrad:
+    """AdaGrad Optimizer"""
+    def __init__(self, learning_rate=0.01, epsilon=1e-8):
+        self.lr = learning_rate
+        self.epsilon = epsilon
+        self.cache = None
+
+    def update(self, params, grads):
+        if self.cache is None:
+            self.cache = [np.zeros_like(p) for p in params]
+
+        for i in range(len(params)):
+            self.cache[i] += grads[i] ** 2
+            params[i] -= (self.lr / (np.sqrt(self.cache[i]) + self.epsilon)) * grads[i]
+
 

@@ -25,5 +25,9 @@ encoder = OneHotEncoder(handle_unknown='ignore', sparse_output=False)
 encoded_categorical = encoder.fit_transform(df[categorical_features])
 encoded_feature_names = encoder.get_feature_names_out(categorical_features)
 
+# Convert to DataFrame
+df_encoded = pd.DataFrame(encoded_categorical, columns=encoded_feature_names, index=df.index)
+df = df.drop(columns=categorical_features).join(df_encoded)
+
 
 

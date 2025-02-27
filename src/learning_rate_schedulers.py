@@ -80,3 +80,15 @@ for name, scheduler in schedulers.items():
     optimizer = optim.SGD(model.parameters(), lr=0.1)  # Reset optimizer
     scheduler = schedulers[name]  # Initialize scheduler
     lr_results[name] = train_model(scheduler)
+
+# ✅ Plot Learning Rate Schedules
+plt.figure(figsize=(10,6))
+for name, lrs in lr_results.items():
+    plt.plot(lrs, label=name)
+
+plt.xlabel("Epochs")
+plt.ylabel("Learning Rate")
+plt.title("Comparison of Learning Rate Schedulers")
+plt.legend()
+plt.grid()
+plt.show()

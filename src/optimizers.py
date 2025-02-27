@@ -25,4 +25,20 @@ class SGDMomentum:
             self.velocity[i] = self.momentum * self.velocity[i] - self.lr * grads[i]
             params[i] += self.velocity[i]
 
-            
+class NAG:
+    """Nesterov Accelerated Gradient (NAG)"""
+    def __init__(self, learning_rate=0.01, momentum=0.9):
+        self.lr = learning_rate
+        self.momentum = momentum
+        self.velocity = None
+
+    def update(self, params, grads):
+        if self.velocity is None:
+            self.velocity = [np.zeros_like(p) for p in params]
+
+        for i in range(len(params)):
+            lookahead = params[i] + self.momentum * self.velocity[i]
+            self.velocity[i] = self.momentum * self.velocity[i] - self.lr * grads[i]
+            params[i] = lookahead + self.velocity[i]
+
+

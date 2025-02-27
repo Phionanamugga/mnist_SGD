@@ -71,3 +71,12 @@ def train_model(scheduler, num_epochs=10):
         print(f"Epoch {epoch+1}/{num_epochs}, Loss: {loss.item():.4f}, LR: {current_lr:.6f}")
 
     return lr_history
+
+# ✅ Training the Model with Different Learning Rate Schedulers
+lr_results = {}
+for name, scheduler in schedulers.items():
+    print(f"\nTraining with {name}...")
+    model = NeuralNet().to(device)  # Reset model for fair comparison
+    optimizer = optim.SGD(model.parameters(), lr=0.1)  # Reset optimizer
+    scheduler = schedulers[name]  # Initialize scheduler
+    lr_results[name] = train_model(scheduler)

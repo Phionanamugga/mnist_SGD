@@ -98,3 +98,25 @@ class Adam:
 
             params[i] -= (self.lr / (np.sqrt(v_hat) + self.epsilon)) * m_hat
 
+# ✅ Testing the optimizers
+if __name__ == "__main__":
+    np.random.seed(42)
+
+    # Simulated parameters and gradients
+    params = [np.array([1.0, 2.0, 3.0])]
+    grads = [np.array([0.1, -0.2, 0.3])]
+
+    optimizers = {
+        "SGD": SGD(learning_rate=0.01),
+        "SGD with Momentum": SGDMomentum(learning_rate=0.01),
+        "NAG": NAG(learning_rate=0.01),
+        "AdaGrad": AdaGrad(learning_rate=0.01),
+        "RMSProp": RMSProp(learning_rate=0.01),
+        "Adam": Adam(learning_rate=0.01)
+    }
+
+    for name, optimizer in optimizers.items():
+        test_params = [np.array([1.0, 2.0, 3.0])]  # Reset parameters
+        optimizer.update(test_params, grads)
+        print(f"{name} Updated Parameters: {test_params}")
+

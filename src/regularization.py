@@ -8,3 +8,5 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.metrics import mean_squared_error
 
 # ✅ Load Dataset (Housing Dataset)
+url = "https://raw.githubusercontent.com/Phionanamugga/teaching/refs/heads/main/datasets/housing.csv"
+df = pd.read_csv(url)

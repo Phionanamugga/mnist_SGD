@@ -14,3 +14,10 @@ df = pd.read_csv(url)
 # ✅ Display Initial Data
 print("Original Data:\n", df.head())
 
+# 🔹 Handle Missing Values 🔹
+imputer = SimpleImputer(strategy="median")
+df_numeric = df.select_dtypes(include=[np.number])  # Select numerical columns
+df[df_numeric.columns] = imputer.fit_transform(df_numeric)
+
+
+

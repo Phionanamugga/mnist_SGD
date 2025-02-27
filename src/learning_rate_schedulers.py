@@ -41,3 +41,33 @@ schedulers = {
     "CosineAnnealingLR": optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=10),
     "ReduceLROnPlateau": optim.lr_scheduler.ReduceLROnPlateau(optimizer, mode='min', factor=0.5, patience=3)
 }
+
+
+# 🔹 Training Function 🔹
+def train_model(scheduler, num_epochs=10):
+    model.train()
+    lr_history = []
+
+    for epoch in range(num_epochs):
+        running_loss = 0.0
+
+        for images, labels in train_loader:
+            images, labels = images.to(device), labels.to(device)
+
+            optimizer.zero_grad()
+            outputs = model(images)
+            loss = criterion(outputs, labels)
+            loss.backward()
+            optimizer.step()
+
+        # Step the learning rate scheduler
+        if isinstance(scheduler, optim.lr_scheduler.ReduceLROnPlateau):
+            scheduler.step(loss)  # Special case for ReduceLROnPlateau
+        else:
+            scheduler.step()
+
+        current_lr = optimizer.param_groups[0]['lr']
+        lr_history.append(current_lr)
+        print(f"Epoch {epoch+1}/{num_epochs}, Loss: {loss.item():.4f}, LR: {current_lr:.6f}")
+
+    return lr_history

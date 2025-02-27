@@ -29,5 +29,11 @@ encoded_feature_names = encoder.get_feature_names_out(categorical_features)
 df_encoded = pd.DataFrame(encoded_categorical, columns=encoded_feature_names, index=df.index)
 df = df.drop(columns=categorical_features).join(df_encoded)
 
+# 🔹 Feature Scaling 🔹
+scaler = StandardScaler()
+df_scaled = pd.DataFrame(scaler.fit_transform(df), columns=df.columns)
+
+
+
 
 

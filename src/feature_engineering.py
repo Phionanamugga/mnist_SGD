@@ -10,3 +10,7 @@ from sklearn.compose import ColumnTransformer
 # ✅ Load Dataset (Housing Dataset)
 url = "https://raw.githubusercontent.com/Phionanamugga/teaching/refs/heads/main/datasets/housing.csv"
 df = pd.read_csv(url)
+
+# ✅ Display Initial Data
+print("Original Data:\n", df.head())
+
